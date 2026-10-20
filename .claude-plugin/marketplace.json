@@ -1,0 +1,14 @@
+{
+  "name": "scieas-marketplace",
+  "description": "Plugins de pesquisa científica de Emanuel A. Silva",
+  "owner": {
+    "name": "Emanuel A. Silva"
+  },
+  "plugins": [
+    {
+      "name": "scieas",
+      "source": "./plugins/scieas",
+      "description": "SciEAS: busca estruturada de artigos em revistas de alto fator de impacto e análises cienciométricas"
+    }
+  ]
+}

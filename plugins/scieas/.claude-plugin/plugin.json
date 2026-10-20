@@ -1,0 +1,9 @@
+{
+  "name": "scieas",
+  "version": "1.0.0",
+  "description": "SciEAS: pesquisa científica avançada — busca estruturada de artigos em periódicos de alto fator de impacto (JCR, Web of Science, Portal CAPES), com análises cienciométricas.",
+  "author": {
+    "name": "Emanuel A. Silva"
+  },
+  "keywords": ["pesquisa científica", "cienciometria", "JCR", "Web of Science", "artigos", "revisão de literatura"]
+}
