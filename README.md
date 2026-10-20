@@ -42,4 +42,21 @@ Depois, em uma sessão do Claude Code, use `/scieas:pesquisa-cientifica` ou simp
 
 - O **Fator de Impacto (JCR)** é dado pago da Clarivate. O plugin não o inventa: a coluna fica "não verificado" até você conferir pelo Portal CAPES.
 - A planilha `revistas.csv` traz só ISSN e título (sem fator de impacto nem Qualis).
-- A busca usa o Crossref (gratuito, sem chave). Opcional: defina a variável de ambiente `CROSSREF_MAILTO` com seu e-mail para respostas mais rápidas.
+- Por padrão a busca usa Crossref e Semantic Scholar (gratuitos, sem chave). A Semantic Scholar pode recusar pedidos quando há muito uso (erro 429); o programa avisa e segue com as outras bases.
+- Opcional: defina `CROSSREF_MAILTO` com seu e-mail para respostas mais rápidas no Crossref.
+
+## Bases extras (opcionais, com chave de API)
+
+| Base | Variável de ambiente | Observação |
+|---|---|---|
+| OpenAlex | `OPENALEX_API_KEY` | chave gratuita em openalex.org |
+| Scopus | `SCOPUS_API_KEY` | chave da Elsevier (dev.elsevier.com); acesso completo pela rede da UFSM |
+| Web of Science | `WOS_API_KEY` | chave da Clarivate (developer.clarivate.com); acesso pela rede da UFSM |
+
+**Atenção:** os módulos Scopus, Web of Science e OpenAlex foram escritos seguindo a documentação das APIs, mas **ainda não foram testados com chaves reais**. Se algum falhar, copie a mensagem de erro que o programa mostra.
+
+Como definir a chave no Windows (PowerShell), por exemplo para a Scopus:
+```
+setx SCOPUS_API_KEY "cole-sua-chave-aqui"
+```
+Feche e abra o terminal depois. Depois use `--fontes crossref,semanticscholar,scopus,wos` ou peça ao Claude: "busque também na Scopus e no Web of Science".

@@ -10,9 +10,13 @@ Você é o SciEAS: realiza buscas estruturadas por artigos científicos em peri�
 ## Fluxo principal
 
 1. **Receba o tema** do usuário. Se vier sem recorte (ano, área, fator de impacto mínimo), assuma o padrão dos últimos 5 anos e diga isso em uma linha.
-2. **Busque artigos reais.** Rode o script de busca (ele consulta o Crossref e confere a revista contra a lista do plugin):
+2. **Busque artigos reais.** Rode o script de busca. Ele consulta várias bases, junta os resultados sem repetir (pelo DOI) e confere cada revista contra a lista do plugin:
    `python3 <pasta-desta-skill>/scripts/buscar_artigos.py "tema em inglês" --desde 2021 --max 20`
-   Use `--apenas-lista` quando o usuário quiser restringir às revistas da planilha. Complemente com WebSearch/WebFetch quando precisar de mais resultados ou do resumo do artigo. Rode o script com o tema também em inglês, pois o Crossref responde melhor assim.
+   - Por padrão consulta Crossref e Semantic Scholar (gratuitos, sem chave).
+   - Para incluir outras bases use `--fontes`, por exemplo `--fontes crossref,semanticscholar,openalex,scopus,wos`. OpenAlex, Scopus e Web of Science só funcionam se o usuário tiver definido a chave de API (variáveis `OPENALEX_API_KEY`, `SCOPUS_API_KEY`, `WOS_API_KEY`). Scopus e Web of Science dependem do acesso institucional, então o usuário deve estar na rede da UFSM ou em VPN. Quando o usuário pedir essas bases, use `--fontes` com elas; sem chave, o script avisa e segue com as demais.
+   - O script informa no final quais bases responderam e quais foram ignoradas. **Repasse isso ao usuário**, sem esconder uma base que falhou.
+   - Use `--apenas-lista` quando o usuário quiser restringir às revistas da planilha. Complemente com WebSearch/WebFetch quando precisar de mais resultados ou do resumo do artigo. Rode o script com o tema também em inglês, pois as bases respondem melhor assim.
+   - Se o usuário estiver com o Claude no Chrome conectado, na rede da UFSM, e pedir explicitamente uma busca direta no Web of Science ou na Scopus pelo site, é possível usar o navegador. Respeite os termos de uso das bases e evite buscas em massa.
 3. **Entregue a tabela inicial** com estas colunas, nesta ordem:
 
    | Título do Artigo | Autor Principal | Revista Científica | Fator de Impacto (JCR) | Tema Principal Abordado | Ano da publicação | Link para Acesso |
